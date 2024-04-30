@@ -7,7 +7,7 @@ function depthFirstSearch(graph, startNode, targetNode) {
             return path;
         }
         visited.add(currentNode);
-        for (let neighbor of graph[currentNode]) {
+        for (let neighbor of graph[currentNode] || []) {
             if (!visited.has(neighbor)) {
                 stack.push([neighbor, path.concat(neighbor)]);
             }
