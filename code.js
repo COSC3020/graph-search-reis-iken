@@ -1,5 +1,5 @@
 function depthFirstSearch(graph, startNode, targetNode) {
-    let visited = new visitedSet();
+    let visited = new Set();
     let stack = [[startNode, [startNode]]];
     while (stack.length > 0) {
         let [currentNode, path] = stack.pop();
