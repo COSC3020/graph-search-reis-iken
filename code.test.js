@@ -1,30 +1,23 @@
-const fs = require('fs');
-const jsc = require('jsverify');
-
+let fs = require('fs');
+let jsc = require('jsverify');
 eval(fs.readFileSync('code.js')+'');
 
-function checkGraphSearch(arr1, arr2) {
-    if (arr1.length != arr2.length) {
-        return false;
-    }
-    for (let i = 0; i < arr1.length; i++) {
-        if(arr1[i] != arr2[i]) {
-            return false;
+let testDepthFirstSearch = jsc.forall(jsc.dict(jsc.array(jsc.string)), jsc.nestring, jsc.nestring, function(graph, startNode, targetNode) {
+    let result = depthFirstSearch(graph, startNode, targetNode);
+
+    function isValidPath(path) {
+        if (path.length === 0) {
+            return startNode === targetNode;
         }
+        for (let i = 0; i < path.length - 1; i++) {
+            if (!graph[path[i]] || !graph[path[i]].includes(path[i + 1])) {
+                return false;
+            }
+        }
+        return true;
     }
-    return true;
+
+    return isValidPath(result);
 }
 
-let test1 = code.depthFirstSearch([], 4, 1);
-let test1sol = [];
-let test2 = code.depthFirstSearch([[3, 4], [0, 1], [2, 1]], 2, 3);
-let test2sol = [0, 2];
-let test3 = code.depthFirstSearch([[3], [1, 2], [5, 7], [5, 2], [9]], 8, 8);
-let test3sol = [0, 1, 2, 3, 4];
-let test4 = code.depthFirstSearch([[6, 2], [2, 9], [7, 4]], 1, 5);
-let test4sol = [];
-
-jsc.assert(checkGraphSearch(test1, test1sol));
-jsc.assert(checkGraphSearch(test2, test2sol));
-jsc.assert(checkGraphSearch(test3, test3sol));
-jsc.assert(checkGraphSearch(test4, test4sol));
+jsc.assert(testDepthFirstSearch);
