@@ -1,5 +1,7 @@
-let code = require("./code.js");
-let assert = require("assert");
+const fs = require('fs');
+const jsc = require('jsverify');
+
+eval(fs.readFileSync('code.js')+'');
 
 function checkGraphSearch(arr1, arr2) {
     if (arr1.length != arr2.length) {
@@ -22,7 +24,7 @@ let test3sol = [0, 1, 2, 3, 4];
 let test4 = code.depthFirstSearch([[6, 2], [2, 9], [7, 4]], 1, 5);
 let test4sol = [];
 
-assert(checkerGraphSearch(test1, test1sol));
-assert(checkerGraphSearch(test2, test2sol));
-assert(checkerGraphSearch(test3, test3sol));
-assert(checkerGraphSearch(test4, test4sol));
+jsc.assert(checkGraphSearch(test1, test1sol));
+jsc.assert(checkGraphSearch(test2, test2sol));
+jsc.assert(checkGraphSearch(test3, test3sol));
+jsc.assert(checkGraphSearch(test4, test4sol));
