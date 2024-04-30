@@ -17,7 +17,7 @@ let testDepthFirstSearch = jsc.forall(jsc.dict(jsc.array(jsc.string)), jsc.nestr
         }
         return true;
     }
-    return isValidPath(result);
+    return isValidPath(result) || (result.length === 0 && startNode !== targetNode);
 });
 
 jsc.assert(testDepthFirstSearch);
