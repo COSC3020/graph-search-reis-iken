@@ -15,3 +15,5 @@ function depthFirstSearch(graph, startNode, targetNode) {
     }
     return [];
 }
+
+module.exports = {depthFirstSearch};
