@@ -1,7 +1,7 @@
 let fs = require('fs');
 let jsc = require('jsverify');
 eval(fs.readFileSync('code.js')+'');
-let testDepthFirstSearch = jsc.forall(jsc.dict(jsc.array(jsc.string)), jsc.nestring, jsc.nestring, function(graph, startNode, targetNode) {
+let testDepthFirstSearch = jsc.forall(jsc.dict(jsc.array(jsc.string)), jsc.nestring, jsc.nestring, depthFirstSearch(graph, startNode, targetNode) {
     let result = depthFirstSearch(graph, startNode, targetNode);
     function isValidPath(path) {
         if (path.length === 0) {
