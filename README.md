@@ -29,7 +29,7 @@ answer, including your reasoning, to this markdown file.
 
 **MY ANSWER:**
 
-
+In the worst case, the algorithm iterates over all vertices and all edges of the graph. For this reason, the runtime complexity is $\Theta(V + E)$ where V is the number of vertices and E is the number of edges.
 
 ## Bonus
 
