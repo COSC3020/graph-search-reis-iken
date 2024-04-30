@@ -17,4 +17,4 @@ let testDepthFirstSearch = jsc.forall(jsc.dict(jsc.array(jsc.string)), jsc.nestr
     return isValidPath(result);
 });
 
-jsc.assert(testDFS);
+jsc.assert(testDepthFirstSearach);
