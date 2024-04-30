@@ -22,7 +22,7 @@ let test3sol = [0, 1, 2, 3, 4];
 let test4 = code.depthFirstSearch([[6, 2], [2, 9], [7, 4]], 1, 5);
 let test4sol = [];
 
-assert(checker(test1, test1sol));
-assert(checker(test2, test2sol));
-assert(checker(test3, test3sol));
-assert(checker(test4, test4sol));
+assert(checkerGraphSearch(test1, test1sol));
+assert(checkerGraphSearch(test2, test2sol));
+assert(checkerGraphSearch(test3, test3sol));
+assert(checkerGraphSearch(test4, test4sol));
