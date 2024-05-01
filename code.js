@@ -1,27 +1,27 @@
 function depthFirstSearch(graph, startNode, targetNode) {
     visited = [startNode];
     path = [startNode];
-    finalPath = []
+    finalPath = [];
 
     function depthFirstSearchInner(graph, startNode, targetNode) {
         if(startNode == targetNode) {
             return startNode;
         }
         for (i = 0; i < graph[startNode].length && finalPath.length < 1; i++){
-            if(visited.includes(graph[startNode][i] )){
+            if (visited.includes(graph[startNode][i])) {
                 continue;
             }
             else {
                 visited.push(graph[startNode][i])
                 path.push(graph[startNode][i])
                 if (path[path.length - 1] == targetNode) {
-                    finalPath = path
+                    finalPath = path;
                 } else {
-                    depthFirstSearchInner(graph, graph[startNode][i], targetNode )
+                    depthFirstSearchInner(graph, graph[startNode][i], targetNode);
                 }
             }
             if (finalPath == []) {
-            path.pop()
+                path.pop();
             }
         }
     }   
