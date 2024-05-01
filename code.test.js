@@ -1,11 +1,17 @@
+const fs = require('fs');
 const assert = require('assert');
-const depthFirstSearch = require('./code');
 
-const a = [[0,1,2],[3,2,1],[1,2],[1,2,3]];
-const b = [[0,1,1,0,0,0,0,0],[0,0,0,1,1,1,0,0],[0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0]];
+eval(fs.readFileSync('code.js')+'');
 
-assert.deepEqual(depthFirstSearch(b,0,7), [0,1,3,2,6,7]);
-assert.deepEqual(depthFirstSearch(b,1,0), [1,3,2,6,7,0]);
-assert.deepEqual(depthFirstSearch(a,3,7), []);
-assert.deepEqual(depthFirstSearch(a,3,2), [3,2]);
-assert.deepEqual(depthFirstSearch(a,0,3), [0,1,2,3]);
+a = [[0,1],[3,2],[1],[1,2]]
+b = [[2],[6],[2,3],[3,4],[4,5],[5,6],[6,7],[7,0]]
+
+assert(JSON.stringify(depthFirstSearch(b,0,7)) == JSON.stringify([0,2,3,4,5,6,7]))
+
+assert(JSON.stringify(depthFirstSearch(b,1,0)) == JSON.stringify([1,6,7,0]))
+
+assert(JSON.stringify(depthFirstSearch(a,3,7)) == JSON.stringify([]))
+
+assert(JSON.stringify(depthFirstSearch(a,3,2)) == JSON.stringify([3,1,2]))
+
+assert(JSON.stringify(depthFirstSearch(a,0,3)) == JSON.stringify([0,1,3]))
