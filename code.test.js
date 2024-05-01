@@ -3,9 +3,7 @@ let jsc = require('jsverify');
 eval(fs.readFileSync('code.js')+'');
 
 let testDepthFirstSearch = jsc.forall("json", "nat", "nat", function (graph, startNode, targetNode) {
-    if (startNode >= graph.length || targetNode >= graph.length) {
-        return true;
-    }
+
     let solutions = {
         "((0, 1, 2, 3, 4), 0, 4)": [0, 1, 2, 3, 4],
         "((0, 1, 2, 3, 4), 3, 0)": [3, 0],
