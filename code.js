@@ -17,3 +17,5 @@ function depthFirstSearch(adjMatrix, startNode, targetNode) {
     let solution = dfsFinder(startNode, []);
     return solution;
 }
+
+module.exports = depthFirstSearch;
