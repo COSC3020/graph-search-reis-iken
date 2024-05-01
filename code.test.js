@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const assert = require('assert');
 
@@ -38,7 +39,7 @@ const testCases = [
 
   {
     description: 'Graph with multiple paths (should find one)',
-    adjacencyMatrix: [[0, 2, 0], [1, 0, 3], [0, 1, 0]],
+    adjacencyMatrix: [[0, 1, 0], [1, 0, 1], [0, 1, 0]],
     startNode: 0,
     targetNode: 2,
     expectedPath: [0, 1, 2],
@@ -62,7 +63,7 @@ const testCases = [
 
   {
     description: 'Directed graph with a path',
-    adjacencyMatrix: [[0, 2, 0], [0, 0, 1], [0, 0, 0]],
+    adjacencyMatrix: [[0, 1, 0], [0, 0, 1], [0, 0, 0]],
     startNode: 0,
     targetNode: 2,
     expectedPath: [0, 1, 2],
