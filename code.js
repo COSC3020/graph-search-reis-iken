@@ -1,17 +1,30 @@
 function depthFirstSearch(graph, startNode, targetNode) {
-    let visited = new Set();
-    let stack = [[startNode, [startNode]]];
-    while (stack.length > 0) {
-        let [currentNode, path] = stack.pop();
-        if (currentNode === targetNode) {
-            return path;
+    visited = [startNode];
+    path = [startNode];
+    finalPath = []
+
+    function depthFirstSearchInner(graph, startNode, targetNode) {
+        if(startNode == targetNode) {
+            return startNode;
         }
-        if (!visited.has(currentNode)) {
-            visited.add(currentNode);
-            for (let neighbor of graph[currentNode] || []) {
-                stack.push([neighbor, path.concat(neighbor)]);
+        for (i = 0; i < graph[startNode].length && finalPath.length < 1; i++){
+            if(visited.includes(graph[startNode][i] )){
+                continue;
+            }
+            else {
+                visited.push(graph[startNode][i])
+                path.push(graph[startNode][i])
+                if (path[path.length - 1] == targetNode) {
+                    finalPath = path
+                } else {
+                    depthFirstSearchInner(graph, graph[startNode][i], targetNode )
+                }
+            }
+            if (finalPath == []) {
+            path.pop()
             }
         }
-    }
-    return [];
+    }   
+    depthFirstSearchInner(graph, startNode, targetNode);
+    return finalPath;
 }
