@@ -1,33 +1,19 @@
-function depthFirstSearch(graph, startNode, targetNode) {
-    visited = [startNode];
-    path = [startNode];
-    finalPath = []
-
-    function depthFirstSearchInner(graph, startNode, targetNode) {
-        if(startNode == targetNode) {
-            return startNode;
-        }
-
-        for (i = 0; i < graph[startNode].length && finalPath.length < 1; i++){
-            if(visited.includes(graph[startNode][i] )){
-                continue;
-            }
-            else {
-                visited.push(graph[startNode][i])
-                path.push(graph[startNode][i])
-
-                if (path[path.length - 1] == targetNode) {
-                    finalPath = path
-                } else {
-                    depthFirstSearchInner(graph, graph[startNode][i], targetNode )
-                }
-
-            }
-            if (finalPath == []) {
-            path.pop()
+function depthFirstSearch(adjMatrix, startNode, targetNode) {
+    if (!adjMatrix || !adjMatrix.length) { return []; }
+    let visited = []; 
+    
+    function dfsFinder(currentNode, path) {
+        visited.push(currentNode);
+        if (currentNode == targetNode) { return path.concat(currentNode); }
+        for (let adj = 0; adj < adjMatrix[currentNode].length; adj++) {
+            if (!visited.includes(adj) && adjMatrix[currentNode][adj] == 1) {
+                let foundPath = dfsFinder(adj, path.concat(currentNode));
+                if (foundPath) { return foundPath; }
             }
         }
-    }   
-    depthFirstSearchInner(graph, startNode, targetNode)
-    return finalPath;
+        return [];
+    }
+    
+    let solution = dfsFinder(startNode, []);
+    return solution;
 }
