@@ -1,22 +1,17 @@
-let fs = require('fs');
-let jsc = require('jsverify');
+const fs = require('fs');
+const assert = require('assert');
+
 eval(fs.readFileSync('code.js')+'');
 
-let testDepthFirstSearch = jsc.forall(jsc.array(jsc.array(jsc.nat())), jsc.nat(), jsc.nat(), function (graph, startNode, targetNode) {
-    if (graph.length === 0 || startNode >= graph.length || targetNode >= graph.length || (startNode === 0 && targetNode === 0)) {
-        return true;
-    }
+a = [[0,1,2],[3,2,1],[1,2],[1,2,3]]
+b = [[3],[6],[2,3,4],[3,4,5],[4,5,6],[5,6,7],[6,7,8],[7,0,1]]
 
-    let solutions = {
-        "([[0, 1, 2, 3, 4]], 0, 4)": [0, 1, 2, 3, 4],
-        "([[0, 1, 2, 3, 4]], 3, 0)": [3, 0],
-        "([[0, 1, 2, 3, 4]], 1, 5)": [],
-    };
+assert(JSON.stringify(depthFirstSearch(b,0,8)) == JSON.stringify([0,7,6,5,4,3,2,1]))
 
-    let result = depthFirstSearch(graph, startNode, targetNode);
-    let expected = solutions[JSON.stringify([graph, startNode, targetNode])] || [];
+assert(JSON.stringify(depthFirstSearch(b,1,0)) == JSON.stringify([1,2,3,4,5,6,7,0]))
 
-    return jsc.utils.isEqual(result, expected);
-});
+assert(JSON.stringify(depthFirstSearch(a,3,7)) == JSON.stringify([]))
 
-jsc.assert(testDepthFirstSearch);
+assert(JSON.stringify(depthFirstSearch(a,3,2)) == JSON.stringify([3,2]))
+
+assert(JSON.stringify(depthFirstSearch(a,0,3)) == JSON.stringify([0,1,2,3]))
