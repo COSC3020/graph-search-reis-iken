@@ -5,24 +5,37 @@ eval(fs.readFileSync('code.js')+'');
 
 const testCases = [
   {
-    description: 'Graph with a loop',
-    adjacencyMatrix: [[0, 1, 0], [1, 0, 1], [0, 1, 0]],
+    description: 'Graph with a cycle',
+    adjacencyMatrix: [
+      [0, 1, 1],
+      [1, 0, 1],
+      [1, 1, 0]
+    ],
     startNode: 0,
-    targetNode: 0,
-    expectedPath: [0],
+    targetNode: 2,
+    expectedPath: [0, 1, 2],
   },
 
   {
-    description: 'Graph with a longer path',
-    adjacencyMatrix: [[0, 1, 1, 0], [1, 0, 1, 0], [1, 1, 0, 1], [0, 0, 1, 0]],
+    description: 'Graph with unreachable nodes',
+    adjacencyMatrix: [
+      [0, 1, 0],
+      [1, 0, 0],
+      [0, 0, 0]
+    ],
     startNode: 0,
-    targetNode: 3,
-    expectedPath: [0, 2, 3],
+    targetNode: 2,
+    expectedPath: [],
   },
 
   {
-    description: 'Graph with multiple disconnected components',
-    adjacencyMatrix: [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]],
+    description: 'Graph with multiple paths (should find one)',
+    adjacencyMatrix: [
+      [0, 1, 1, 0],
+      [1, 0, 0, 1],
+      [1, 0, 0, 1],
+      [0, 1, 1, 0]
+    ],
     startNode: 0,
     targetNode: 3,
     expectedPath: [0, 1, 3],
@@ -43,5 +56,5 @@ function runTest(testCase) {
 }
 
 for(let c = 0; c < testCases.length; c++){
-  assert(runTest(testCases[c]));
+	assert(runTest(testCases[c]));
 }
