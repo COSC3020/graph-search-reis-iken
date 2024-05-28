@@ -1,21 +1,30 @@
-function depthFirstSearch(adjMatrix, startNode, targetNode) {
-    if (!adjMatrix || !adjMatrix.length) { return []; }
-    let visited = []; 
-    function dfsFinder(currentNode, path) {
-        visited.push(currentNode);
-        if (currentNode == targetNode) {
-            return path.concat(currentNode);
+function depthFirstSearch(graph, startNode, targetNode) {
+    let visited = [startNode];
+    let path = [startNode];
+    let finalPath = [];
+
+    function depthFirstSearchInner(graph, startNode, targetNode) {
+        if (startNode == targetNode) {
+            finalPath = [...path];
+            return;
         }
-        for (let adj = 0; adj < adjMatrix[currentNode].length; adj++) {
-            if (!visited.includes(adj) && adjMatrix[currentNode][adj] == 1) {
-                const foundPath = dfsFinder(adj, path.concat(currentNode));
-                if (foundPath) {
-                    return foundPath;
+        for (let i = 0; i < graph[startNode].length && finalPath.length < 1; i++) {
+            if (visited.includes(graph[startNode][i])) {
+                continue;
+            } else {
+                visited.push(graph[startNode][i]);
+                path.push(graph[startNode][i]);
+                if (path[path.length - 1] == targetNode) {
+                    finalPath = [...path]; // Make a copy of path
+                } else {
+                    depthFirstSearchInner(graph, graph[startNode][i], targetNode);
                 }
             }
+            if (finalPath.length === 0) {
+                path.pop();
+            }
         }
-        return [];
-    }
-    let solution = dfsFinder(startNode, []);
-    return solution;
+    }   
+    depthFirstSearchInner(graph, startNode, targetNode);
+    return finalPath;
 }
