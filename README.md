@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/M24O3lId)
 # Search in Graphs
 
 Recall the pseudocode for Depth-First Search:
@@ -25,6 +26,10 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+
+**MY ANSWER:**
+
+In the worst case, the algorithm iterates over all vertices and all edges of the graph. For this reason, the runtime complexity is $\Theta(V + E)$ where V is the number of vertices and E is the number of edges.
 
 ## Bonus
 
